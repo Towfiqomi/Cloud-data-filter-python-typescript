@@ -1,0 +1,23 @@
+version: "3.7"
+services:
+  cloud-api:
+    build:
+      dockerfile: Dockerfile
+      context: ./cloud-api
+    ports:
+      - "5000:5000"
+    volumes:
+      - "./cloud-api/apis:/apis"
+    container_name: cloud-api
+    # command: ["poetry", "run", "uvicorn", "apis.main:app", "--host", "0.0.0.0", "--port", "5000", "--reload"]
+
+  cloud-app:
+    build:
+      dockerfile: Dockerfile
+      context: ./cloud-app
+    ports:
+      - "3000:3000"
+    container_name: cloud-app
+    command: ["yarn", "start"]
+    depends_on:
+      - "cloud-api"

@@ -1,9 +1,8 @@
 from fastapi import FastAPI
 from pydantic import BaseModel
 
-router = FastAPI()
+app = FastAPI()
 
-
-@router.get("/")
+@app.get("/")
 def hello_world():
     return {"Hello": "World"}
