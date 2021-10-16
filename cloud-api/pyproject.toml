@@ -12,6 +12,7 @@ uvicorn = "^0.15.0"
 starlette = "^0.16.0"
 pydantic = "^1.8.2"
 pytest = "^6.2.5"
+asyncio = "^3.4.3"
 
 [tool.poetry.dev-dependencies]
 
