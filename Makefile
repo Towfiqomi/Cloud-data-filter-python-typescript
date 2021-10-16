@@ -14,4 +14,4 @@ down:
 	docker-compose down
 
 ci:
-	docker-compose run -T cloud-api poetry run pytest tests
+	docker-compose run -T cloud-api poetry run pytest -s -vv tests
