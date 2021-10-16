@@ -2,6 +2,6 @@ from fastapi import APIRouter
 
 router = APIRouter()
 
-@router.get("/clouds")
+@router.get("/cloud/list")
 def hello_world():
     return {"Hello": "World"}
