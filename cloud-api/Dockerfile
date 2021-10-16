@@ -10,6 +10,7 @@ RUN apt-get update && \
 WORKDIR /cloud-api
 
 COPY ./apis ./apis
+COPY ./tests ./tests
 COPY pyproject.toml .
 COPY poetry.lock .
 

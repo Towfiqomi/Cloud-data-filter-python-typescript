@@ -5,6 +5,7 @@
 !pyproject.toml
 !poetry.lock
 !./apis
+!./tests
 
 # Blocklist nested pycache
 **/__pycache__

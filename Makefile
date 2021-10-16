@@ -12,3 +12,6 @@ up: build
 
 down:
 	docker-compose down
+
+ci:
+	docker-compose run -T cloud-api poetry run pytest tests
