@@ -1,7 +1,7 @@
 from fastapi import FastAPI
 from pydantic import BaseModel
 
-from apis import config
+from apis import config, routes
 
 
 def application_details() -> FastAPI:
@@ -10,11 +10,7 @@ def application_details() -> FastAPI:
         description=config.API_DESCRIPTION,
         version=config.API_VERSION,
     )
+    application.include_router(routes.router, prefix=config.API_ROUTE_PREFIX)
     return application
 
 app = application_details()
-
-
-@app.get("/")
-def hello_world():
-    return {"Hello": "World"}
