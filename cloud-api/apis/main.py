@@ -1,5 +1,7 @@
 from fastapi import FastAPI
 from pydantic import BaseModel
+from starlette.exceptions import HTTPException as StarletteHTTPException
+from fastapi.responses import PlainTextResponse
 
 from apis import config, routes
 
@@ -14,3 +16,7 @@ def application_details() -> FastAPI:
     return application
 
 app = application_details()
+
+@app.exception_handler(StarletteHTTPException)
+async def http_exception_handler(request, exc):
+    return PlainTextResponse(str(exc.detail), status_code=exc.status_code)

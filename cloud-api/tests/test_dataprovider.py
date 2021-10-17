@@ -1,10 +1,7 @@
-import json
 import pytest
-from fastapi import HTTPException
 from unittest import mock
 from tests import fixtures
 from apis.common import dataprovider
-from apis.config import PUBLIC_API
 
 @pytest.mark.asyncio
 @mock.patch("apis.common.dataprovider.get_cloud_list")
@@ -13,7 +10,6 @@ async def test_data_proovider_get_cloud_list_success(mock_dataprovider_get_cloud
     mock_dataprovider_get_cloud_list.return_value = MOCK_CLOUD_LIST
     response = await dataprovider.get_cloud_list()
     assert response == MOCK_CLOUD_LIST
-    
 
 @pytest.mark.asyncio
 @mock.patch("apis.common.dataprovider.get_cloud_list")
