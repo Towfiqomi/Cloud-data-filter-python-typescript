@@ -1,0 +1,27 @@
+.container{
+    display: flex;
+}
+.column {
+    flex: 50%;
+}
+.form-border {
+    position: absolute;
+    top: 24px;
+    left: 95px;
+    height: 45%;
+    width: 16%;
+    border: 2px solid #FF524D!important;
+    border-radius: 0px;
+    font-size: 16px;
+    padding: 16px 20px;
+    outline: none;
+    background: none;
+    z-index: 1;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+  }
+
+  /* Hide the placeholder texts (a) */
+  
+  ::placeholder {
+    color: transparent;
+  }
