@@ -12,7 +12,7 @@ const useCloudList = (): {
 
   const fetchCloudList = async (): Promise<void> => {
     try {
-        const {data} = await axios.get<CloudList>("http://localhost:5000/v1/cloud/list");
+        const {data} = await axios.get<CloudList>("http://localhost:5000/v1/cloud/list?current_page=1&page_size=10");
         if (data) {
             setCloudList(data);
         }

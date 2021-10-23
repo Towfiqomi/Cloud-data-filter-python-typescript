@@ -10,9 +10,15 @@ async def get_cloud_list(current_page, page_size) -> CloudList:
         )
     cloud_list = data.json()
     
-    index_of_last_cloud = current_page * page_size;
-    index_of_first_cloud = index_of_last_cloud - page_size;
+    index_of_last_cloud = current_page * page_size
+    index_of_first_cloud = index_of_last_cloud - page_size
     limited_cloud_list = cloud_list["clouds"][index_of_first_cloud:index_of_last_cloud]
-    return {"clouds" : limited_cloud_list}
-
-
+    total = len(cloud_list["clouds"])
+    return {
+        "clouds": limited_cloud_list,
+        "pageInfo": {
+            "total": total,
+            "hasNextPage": True if total > page_size else False,
+            "total_pages": total / page_size,
+        },
+    }

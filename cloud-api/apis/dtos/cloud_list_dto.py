@@ -9,5 +9,10 @@ class CloudDetails(BaseModel):
     geo_longitude : float
     geo_region : str
 
+class PageInfo(BaseModel):
+    total : int
+    hasNextPage : bool
+    total_pages: int
 class CloudList(BaseModel):
     clouds : List[CloudDetails]
+    pageInfo : PageInfo
