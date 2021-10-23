@@ -5,8 +5,8 @@ from apis.models import cloud_list
 router = APIRouter()
 
 @router.get("/cloud/list", response_model=cloud_list_dto.CloudList)
-async def get_cloud_list() -> cloud_list_dto.CloudList:
-    list = await cloud_list.get_cloud_list()
+async def get_cloud_list(current_page: int, page_size:int) -> cloud_list_dto.CloudList:
+    list = await cloud_list.get_cloud_list(current_page, page_size)
     if not list:
         return []
     return list
