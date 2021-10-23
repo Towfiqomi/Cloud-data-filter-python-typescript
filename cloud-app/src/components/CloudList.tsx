@@ -15,11 +15,9 @@ export const CloudList : any = () => {
          fetch()
     }, [currentPage])
 
-    const handlePageClick = (data : any) =>{
-      setCurrentPage(data.selected + 1)
+    const handlePageClick = (selectedItem: { selected: number }) =>{
+      setCurrentPage(selectedItem.selected + 1)
     }
-
-    console.log(pageInfo);
   
     return (
         <div className="div-center">
@@ -49,7 +47,7 @@ export const CloudList : any = () => {
             </table>
             <ReactPaginate
               previousLabel = {"Previous"} 
-              pageCount={pageInfo.total_pages}
+              pageCount={pageInfo.total_pages +1}
               nextLabel={"Next"}
               breakLabel={"..."} 
               pageRangeDisplayed={5}
