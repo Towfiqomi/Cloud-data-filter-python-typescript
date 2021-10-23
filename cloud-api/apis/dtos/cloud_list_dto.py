@@ -13,6 +13,9 @@ class PageInfo(BaseModel):
     total : int
     hasNextPage : bool
     total_pages: int
-class CloudList(BaseModel):
+class PaginatedCloudList(BaseModel):
     clouds : List[CloudDetails]
     pageInfo : PageInfo
+
+class CloudList(BaseModel):
+    clouds : List[CloudDetails]

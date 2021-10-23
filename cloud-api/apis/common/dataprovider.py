@@ -1,8 +1,19 @@
 import requests
-from apis.dtos.cloud_list_dto import CloudList
+from apis.dtos.cloud_list_dto import CloudList, PaginatedCloudList
 from apis.config import PUBLIC_API
 
-async def get_cloud_list(current_page, page_size) -> CloudList:
+
+async def get_full_cloud_list() -> CloudList:
+    data = requests.get(PUBLIC_API)
+    if not data:
+        raise Exception(
+            f"Cloud list from public api is not served"
+        )
+    cloud_list = data.json()
+    return cloud_list
+
+
+async def get_paginated_cloud_list(current_page, page_size) -> PaginatedCloudList:
     data = requests.get(PUBLIC_API)
     if not data:
         raise Exception(

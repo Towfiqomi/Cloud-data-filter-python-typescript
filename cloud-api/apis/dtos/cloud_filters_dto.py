@@ -11,7 +11,18 @@ class CloudFiltersData(BaseModel):
 class Filter(enum.Enum):
     REGION = "region"
     Distance = "distance"
-    OTHER = "other"
+    Provider = "provider"
     
 class CloudFilters(BaseModel):
-    filter : Filter
+    filter_key : Filter
+    filter_value : str
+    
+class CloudProvider(enum.Enum):
+    AWS = "aws"
+    AZURE = "azure"
+    GOOGLE = "google"
+    DO = "do"
+    UPCLOUD="upcloud"
+
+class RegionList(BaseModel):
+    region = list[str]

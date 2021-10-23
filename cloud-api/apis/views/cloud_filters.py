@@ -4,9 +4,15 @@ from apis.models import cloud_filters
 
 router = APIRouter()
 
-@router.post("/cloud/filter", response_model = cloud_list_dto.CloudList)
-def cloud_filters(filter: cloud_filters_dto.CloudFilters,
-                filter_data: cloud_filters_dto.CloudFiltersData) -> cloud_list_dto.CloudList:
+# @router.post("/cloud/filter", response_model = cloud_list_dto.CloudList)
+# def cloud_filters(filter: cloud_filters_dto.CloudFilters,
+#                 filter_data: cloud_filters_dto.CloudFiltersData) -> cloud_list_dto.CloudList:
     
     
-    return {"Hello": "World"}
+#     return {"Hello": "World"}
+
+
+@router.get("/cloud/filters", response_model = str)
+def get_cloud_filters():
+    filters = cloud_filters.get_cloud_filters()
+    return filters
