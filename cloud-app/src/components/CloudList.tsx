@@ -1,21 +1,28 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import "../components/CloudList.css"
 import useCloudList from "../hooks/useCloudListHook"
 import _ from "lodash"
+import ReactPaginate from "react-paginate"
  
 export const CloudList : any = () => {
-    const {cloudList, fetchCloudList} = useCloudList();
+    const {cloudList, pageInfo, fetchCloudList} = useCloudList();
+    const [currentPage, setCurrentPage] = useState(1)
     
     useEffect(() => {
         const fetch = async () =>{
-          await fetchCloudList();
+          await fetchCloudList(currentPage);
         };
          fetch()
-    }, [])
+    }, [currentPage])
 
+    const handlePageClick = (data : any) =>{
+      setCurrentPage(data.selected + 1)
+    }
 
+    console.log(pageInfo);
+  
     return (
-      <div className="div-center">
+        <div className="div-center">
             <div className="mr-0">
             <table className="styled-table">
               <thead>
@@ -40,6 +47,23 @@ export const CloudList : any = () => {
                 </tbody>
                 )}
             </table>
+            <ReactPaginate
+              previousLabel = {"Previous"} 
+              pageCount={pageInfo.total_pages}
+              nextLabel={"Next"}
+              breakLabel={"..."} 
+              pageRangeDisplayed={5}
+              marginPagesDisplayed={5}
+              onPageChange={handlePageClick}
+              containerClassName={"pagination div-center"}
+              activeClassName={"active"}
+              nextLinkClassName={"pagination-next-content sui-text-b5"}
+              nextClassName={"pagination-arrow-next"}
+              previousClassName={"pagination-arrow-previous"}
+              previousLinkClassName={"pagination-previous-content sui-text-b5"}
+              disabledClassName={"pagination-previous-next-disabled"}
+              >
+            </ReactPaginate>
           </div>
       </div>
     );

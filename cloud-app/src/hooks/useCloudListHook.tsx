@@ -1,20 +1,29 @@
 import { useRef, useState } from "react";
-import { CloudList } from "../types";
+import { CloudList, PageInfo } from "../types";
 import axios from "axios";
 
 const useCloudList = (): {
   cloudList: CloudList;
-  fetchCloudList:()=> Promise<void>;
+  pageInfo : PageInfo;
+  fetchCloudList:(current_page : number)=> Promise<void>;
 } => {
   const [cloudList, setCloudList] = useState<CloudList>({
       clouds : []
   });
+  const [pageInfo, setPageInfo] = useState<PageInfo>({
+    total : 0,
+    hasNextPage : false,
+    total_pages : 0
+  })
 
-  const fetchCloudList = async (): Promise<void> => {
+  const fetchCloudList = async (current_page : number): Promise<void> => {
     try {
-        const {data} = await axios.get<CloudList>("http://localhost:5000/v1/cloud/list?current_page=1&page_size=10");
+        const {data} = await axios.get<CloudList>(`http://localhost:5000/v1/cloud/list?current_page=${current_page}&page_size=10`);
         if (data) {
             setCloudList(data);
+        }
+        if (data.pageInfo){
+          setPageInfo(data.pageInfo)
         }
       } catch (error) {
       }
@@ -22,6 +31,7 @@ const useCloudList = (): {
 
   return {
     cloudList,
+    pageInfo,
     fetchCloudList,
   };
 };

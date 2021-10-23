@@ -8,4 +8,11 @@ export type CloudSummery = Readonly<{
 
 export type CloudList = Readonly<{
     clouds : ReadonlyArray<CloudSummery>
+    pageInfo?: PageInfo
+}>
+
+export type PageInfo = Readonly<{
+    total: number,
+    hasNextPage : boolean,
+    total_pages : number
 }>
