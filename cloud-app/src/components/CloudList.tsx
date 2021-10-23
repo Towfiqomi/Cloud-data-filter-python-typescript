@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react';
 import "../components/CloudList.css"
 import useCloudList from "../hooks/useCloudListHook"
-import _ from "lodash"
 import ReactPaginate from "react-paginate"
  
 export const CloudList : any = () => {
@@ -12,7 +11,7 @@ export const CloudList : any = () => {
         const fetch = async () =>{
           await fetchCloudList(currentPage);
         };
-         fetch()
+        fetch()
     }, [currentPage])
 
     const handlePageClick = (selectedItem: { selected: number }) =>{
