@@ -1,11 +1,15 @@
-import { BrowserRouter as Router, Route} from 'react-router-dom'
-import {CloudList} from "./components/CloudList"
+import { BrowserRouter as Router, Route, Switch} from 'react-router-dom'
+import {CloudListPage} from "./routed-pages/CloudListPage"
 
 function App() {
   return (
     <div className="App">
       <Router>
-          <Route exact path="/" component={CloudList} />
+      <Switch>
+          <Route exact path="/" component={() =>
+            <CloudListPage/>
+          }/>
+      </Switch>
       </Router>
     </div>
   );
