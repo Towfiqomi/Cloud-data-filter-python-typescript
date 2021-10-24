@@ -16,3 +16,8 @@ export type PageInfo = Readonly<{
     hasNextPage : boolean,
     total_pages : number
 }>
+
+export type CloudFilters = Readonly<{
+    regions : ReadonlyArray<string>
+    providers: ReadonlyArray<string>
+}>

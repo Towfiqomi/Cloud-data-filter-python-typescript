@@ -2,7 +2,7 @@ import { FieldProps } from "formik";
 import Select from "react-select";
 
 
-interface Option {
+export interface Option {
   label: string;
   value: string;
 }

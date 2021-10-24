@@ -1,8 +1,8 @@
-import React from "react";
-import { render } from "react-dom";
 import { Field, Form, Formik, FormikProps } from "formik";
 import CustomSelect from "../common/Select";
 import "./CloudList.css"
+import useCloudFilters from "../hooks/useCloudFilters"
+import { useEffect } from "react";
 
 export interface FormValues {
   region: string;
@@ -38,6 +38,16 @@ const providerOptions = [
 ];
 
 export const ClouFilter = () => {
+
+  const {providers, regions, fetchCloudFilters} = useCloudFilters();
+
+  useEffect(() => {
+    const fetch = async () =>{
+      await fetchCloudFilters();
+    };
+    fetch()
+  }, [])
+
   const onSubmit = (values: FormValues) => {
     alert(JSON.stringify(values, null, 2));
   };
@@ -50,7 +60,7 @@ export const ClouFilter = () => {
         <Field
           className="custom-select"
           name="singleProvider"
-          options={providerOptions}
+          options={providers}
           component={CustomSelect}
           placeholder="Select Cloud Provider"
           isMulti={false}
@@ -61,7 +71,7 @@ export const ClouFilter = () => {
       <Field
         className="custom-select"
         name="multiProvider"
-        options={providerOptions}
+        options={regions}
         component={CustomSelect}
         placeholder="Select Region"
       />
