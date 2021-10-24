@@ -17,7 +17,7 @@ const useCloudFilters = (): {
         if (data.providers) {
             const providerList = data.providers.map(function (provider: any) {
                 return {
-                    label: provider,
+                    label: provider.replace(/(^\w|\s\w)/g, (regionLabel : string) => regionLabel.toUpperCase()),
                     value: provider
                 };
               });

@@ -1,34 +1,20 @@
-import React from "react"
-import { Field, ErrorMessage } from "formik"
+import React from "react";
+import { Field, FieldProps } from "formik";
 
-export const Checkbox = (props : any) => {
-  const { label, name, options, ...rest } = props
-  return (
-    <div>
-      <label>{label}</label>
-      <Field name={name}>
-        {(formik: any) => {
-          const { field } = formik
-          return options && options.map((option : any) => {
-            return (
-              <div key={option.key}>
-                <input
-                  type="checkbox"
-                  id={option.value}
-                  {...field}
-                  {...rest}
-                  value={option.value}
-                  checked={field.value.includes(option.value)}
-                />
-                <label>{option.key}</label>
-              </div>
-            )
-          })
-        }}
-      </Field>
-      <ErrorMessage name={name} />
-    </div>
-  )
+interface Props {
+  label : string;
+  value : boolean;
 }
 
-export default Checkbox
+export const Checkbox = ({ value, label }: Props): JSX.Element => (
+  <Field
+    name={label}
+    render={({ field }: FieldProps) => (
+      <input
+        {...field}
+        type="checkbox"
+        checked={field.value}
+      />
+    )}
+  />
+);

@@ -155,15 +155,6 @@
     position: relative;
 }
   
-a {
-    color: #007ab8;
-    text-decoration: underline;
-  }
-  
-a:hover {
-    text-decoration: none;
-}
-  
 button {
     padding: 0.8rem 1.2rem;
     border-style: none;
@@ -200,4 +191,8 @@ button.outline {
   
 hr {
     margin: 2rem 0;
+}
+
+.form-button-style{
+  margin-top: 20px;
 }

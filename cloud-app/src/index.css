@@ -17,3 +17,16 @@ ul{
   list-style:none!important;
 }
 
+input[type="checkbox"] {
+  width:15px;
+  height:15px;
+}
+input[type="checkbox"]:checked {
+  background-color: #FF524D!important;
+  border-left-color:#FF524D;
+  border-right-color:#FF524D;
+}
+
+input[type="checkbox"]:hover {
+  box-shadow:0px 0px 10px #FF524D;
+}

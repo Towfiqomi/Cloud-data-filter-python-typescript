@@ -3,39 +3,19 @@ import CustomSelect from "../common/Select";
 import "./CloudList.css"
 import useCloudFilters from "../hooks/useCloudFilters"
 import { useEffect } from "react";
+import {Checkbox} from "../common/Checkbox";
 
 export interface FormValues {
   region: string;
-  provider: string[];
+  provider: string[],
+  distance: boolean
 }
 
 const defaultValues: FormValues = {
   region: "",
-  provider: []
+  provider: [],
+  distance : false
 };
-
-const providerOptions = [
-  {
-    label: "AWS",
-    value: "aws"
-  },
-  {
-    label: "Google",
-    value: "google"
-  },
-  {
-    label: "Azure",
-    value: "azure"
-  },
-  {
-    label: "Do",
-    value: "do"
-  },
-  {
-    label: "Up cloud",
-    value: "upcloud"
-  }
-];
 
 export const ClouFilter = () => {
 
@@ -59,7 +39,7 @@ export const ClouFilter = () => {
       </label>
         <Field
           className="custom-select"
-          name="singleProvider"
+          name="provider"
           options={providers}
           component={CustomSelect}
           placeholder="Select Cloud Provider"
@@ -70,12 +50,22 @@ export const ClouFilter = () => {
       </label>
       <Field
         className="custom-select"
-        name="multiProvider"
+        name="region"
         options={regions}
         component={CustomSelect}
         placeholder="Select Region"
       />
-      <button type="submit">Filter Cloud</button>
+      <Field
+        label="distance"
+        value= "true"
+        component={Checkbox}
+      />
+      <label className="text-style">
+        Distance
+      </label>
+      <div>
+        <button className="form-button-style" type="submit">Filter Cloud</button>
+      </div>
     </Form>
   );
 
