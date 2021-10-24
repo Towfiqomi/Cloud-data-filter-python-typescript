@@ -1,5 +1,5 @@
 from apis.common import dataprovider
-from apis.dtos import cloud_filters_dto
+from apis.dtos import cloud_filters_dto, cloud_list_dto
 
 def get_unique_region_list(cloud_list):
     region_list = []
@@ -15,3 +15,7 @@ async def get_cloud_filters() -> cloud_filters_dto.CloudFilterBy:
         "regions" : region_list,
         "providers": cloud_filters_dto.CloudProvider.list()
     }
+
+async def get_filtered_cloud_list()-> cloud_list_dto.PaginatedCloudList:
+    cloud_list = await dataprovider.get_full_cloud_list()
+    return cloud_list

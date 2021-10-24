@@ -8,14 +8,10 @@ class CloudFiltersData(BaseModel):
     geo_longitude : Optional[float]
     geo_region : Optional[str]
 
-class Filter(Enum):
-    REGION = "region"
-    Distance = "distance"
-    Provider = "provider"
-    
 class CloudFilters(BaseModel):
-    filter_key : Filter
-    filter_value : CloudFiltersData
+    provider : Optional[str]
+    region : Optional[str]
+    distance : Optional[bool]
     
 class GetCloudProvider(Enum):
     @classmethod
@@ -32,6 +28,4 @@ class CloudProvider(GetCloudProvider):
 class CloudFilterBy(BaseModel):
     regions : list[str]
     providers: CloudProvider
-    
-    
 
