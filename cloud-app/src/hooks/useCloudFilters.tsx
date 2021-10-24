@@ -15,19 +15,19 @@ const useCloudFilters = (): {
     try {
         const {data} = await axios.get<CloudFilters>(`http://localhost:5000/v1/cloud/filters`);
         if (data.providers) {
-            const providerList = data.providers.map(function (item: any) {
+            const providerList = data.providers.map(function (provider: any) {
                 return {
-                    label: item,
-                    value: item
+                    label: provider,
+                    value: provider
                 };
               });
             setProviders(providerList);
         }
         if (data.regions){
-            const regionList = data.regions.map(function (item: any) {
+            const regionList = data.regions.map(function (region: any) {
                 return {
-                    label: item,
-                    value: item
+                    label: region.replace(/(^\w|\s\w)/g, (regionLabel : string) => regionLabel.toUpperCase()),
+                    value: region
                 };
               });
             setRegions(regionList)
