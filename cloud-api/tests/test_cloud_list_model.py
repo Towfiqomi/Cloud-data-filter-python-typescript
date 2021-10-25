@@ -1,6 +1,5 @@
 from unittest import mock
 import pytest
-from apis.main import app
 from apis.common import dataprovider
 from tests import fixtures
 
