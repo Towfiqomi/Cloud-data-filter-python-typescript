@@ -55,15 +55,15 @@ export const CloudListPage = () => {
               pageCount={pageInfo.total_pages +1}
               nextLabel={"Next"}
               breakLabel={"..."} 
-              pageRangeDisplayed={5}
-              marginPagesDisplayed={5}
+              pageRangeDisplayed={2}
+              marginPagesDisplayed={2}
               onPageChange={handlePageClick}
               containerClassName={"pagination div-center"}
               activeClassName={"active"}
-              nextLinkClassName={"pagination-next-content sui-text-b5"}
+              nextLinkClassName={"pagination-next-content"}
               nextClassName={"pagination-arrow-next"}
               previousClassName={"pagination-arrow-previous"}
-              previousLinkClassName={"pagination-previous-content sui-text-b5"}
+              previousLinkClassName={"pagination-previous-content"}
               disabledClassName={"pagination-previous-next-disabled"}
               >
         </ReactPaginate>
