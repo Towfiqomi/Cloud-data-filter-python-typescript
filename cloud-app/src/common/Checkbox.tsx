@@ -6,7 +6,7 @@ interface Props {
   value : boolean;
 }
 
-export const Checkbox = ({ value, label }: Props): JSX.Element => (
+export const Checkbox = ({ label }: Props): JSX.Element => (
   <Field
     name={label}
     render={({ field }: FieldProps) => (

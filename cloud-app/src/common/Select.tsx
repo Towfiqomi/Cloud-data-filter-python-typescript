@@ -1,11 +1,6 @@
 import { FieldProps } from "formik";
 import Select from "react-select";
-
-
-export interface Option {
-  label: string;
-  value: string;
-}
+import { Option } from "../types";
 
 interface CustomSelectProps extends FieldProps {
   options: Option[];

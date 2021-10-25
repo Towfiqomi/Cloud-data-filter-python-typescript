@@ -1,37 +1,38 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 
 import {CloudListTable} from "../components/CloudList";
 import {ClouFilter} from "../components/CloudFilter"
-import "./routedPage.css"
 import useCloudList from "../hooks/useCloudListHook";
 import ReactPaginate from "react-paginate";
 import useCloudFilters from "../hooks/useCloudFilters";
-import { values } from "lodash";
+
+import "./routedPage.css";
+
 
 export const CloudListPage = () => {
   const {cloudList, pageInfo, filterEntity, fetchCloudList, filterCloudList} = useCloudList();
-  const [currentPage, setCurrentPage] = useState(1)
+  const [currentPage, setCurrentPage] = useState(1);
   const {providers, regions, fetchCloudFilters} = useCloudFilters();
 
   useEffect(() => {
     const fetch = async () =>{
       await fetchCloudFilters();
     };
-    fetch()
+    fetch();
   }, [])
 
   useEffect(() => {
       const fetch = async () =>{
           if(filterEntity != undefined){
-            filterEntity && await filterCloudList(currentPage, filterEntity)
+            filterEntity && await filterCloudList(currentPage, filterEntity);
           }
           else await fetchCloudList(currentPage);
       };
-      fetch()
+      fetch();
   }, [currentPage])
 
   const handlePageClick = (selectedItem: { selected: number }) =>{
-      setCurrentPage(selectedItem.selected + 1)
+      setCurrentPage(selectedItem.selected + 1);
   }
 
 

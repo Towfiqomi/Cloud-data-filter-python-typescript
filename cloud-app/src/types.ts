@@ -1,3 +1,14 @@
+export type Option = Readonly<{
+    label: string;
+    value: string;
+}>
+
+export type CloudFiltersFormValues = Readonly<{
+    region: string;
+    provider: string,
+    distance: boolean
+  }>
+
 export type CloudSummery = Readonly<{
     cloud_name: string,
     cloud_description: string,

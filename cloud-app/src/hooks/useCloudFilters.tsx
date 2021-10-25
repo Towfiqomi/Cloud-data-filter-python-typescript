@@ -1,7 +1,7 @@
 import { useState } from "react";
-import { CloudFilters } from "../types";
+import { CloudFilters, Option } from "../types";
 import axios from "axios";
-import {Option} from "../common/Select"
+import {toUpperCase} from "../utils/Utils"
 
 const useCloudFilters = (): {
   regions: Option[];
@@ -17,7 +17,7 @@ const useCloudFilters = (): {
         if (data.providers) {
             const providerList = data.providers.map(function (provider: any) {
                 return {
-                    label: provider.replace(/(^\w|\s\w)/g, (regionLabel : string) => regionLabel.toUpperCase()),
+                    label: toUpperCase(provider),
                     value: provider
                 };
               });
@@ -26,7 +26,7 @@ const useCloudFilters = (): {
         if (data.regions){
             const regionList = data.regions.map(function (region: any) {
                 return {
-                    label: region.replace(/(^\w|\s\w)/g, (regionLabel : string) => regionLabel.toUpperCase()),
+                    label: toUpperCase(region),
                     value: region
                 };
               });

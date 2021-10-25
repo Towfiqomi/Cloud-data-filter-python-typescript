@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { CloudFilters, CloudData, PageInfo, CloudFiltersDataEntity } from "../types";
+import {CloudData, PageInfo, CloudFiltersDataEntity } from "../types";
 import axios from "axios";
 
 const useCloudList = (): {
@@ -16,9 +16,9 @@ const useCloudList = (): {
     total : 0,
     hasNextPage : false,
     total_pages : 0
-  })
+  });
 
-  const [filterEntity, setFilterEntity] = useState<CloudFiltersDataEntity>()
+  const [filterEntity, setFilterEntity] = useState<CloudFiltersDataEntity>();
 
   const fetchCloudList = async (current_page : number): Promise<void> => {
     try {
@@ -27,7 +27,7 @@ const useCloudList = (): {
             setCloudList(data);
         }
         if (data.pageInfo){
-          setPageInfo(data.pageInfo)
+          setPageInfo(data.pageInfo);
         }
       } catch (error) {
       }
@@ -44,7 +44,7 @@ const useCloudList = (): {
             setCloudList(data);
         }
         if (data.pageInfo){
-          setPageInfo(data.pageInfo)
+          setPageInfo(data.pageInfo);
         }
       } catch (error) {
       }

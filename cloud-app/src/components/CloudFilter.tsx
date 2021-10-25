@@ -1,18 +1,13 @@
 import { Field, Form, Formik, FormikProps } from "formik";
+
 import CustomSelect from "../common/Select";
-import "./CloudList.css"
-import useCloudFilters from "../hooks/useCloudFilters"
-import { useEffect } from "react";
 import {Checkbox} from "../common/Checkbox";
-import {Option} from "../common/Select"
+import { Option, CloudFiltersFormValues } from "../types";
 
-export interface FormValues {
-  region: string;
-  provider: string,
-  distance: boolean
-}
+import "./CloudList.css";
 
-const defaultValues: FormValues = {
+
+const defaultValues: CloudFiltersFormValues = {
   region: "",
   provider: "",
   distance : false
@@ -26,11 +21,11 @@ interface Props{
 
 export const ClouFilter = ({providers, regions, handleSubmit} : Props) => {
 
-  const onSubmit = (values: FormValues) => {
-    handleSubmit(1,values)
+  const onSubmit = (values: CloudFiltersFormValues) => {
+    handleSubmit(1,values);
   };
 
-  const renderForm = (formikBag: FormikProps<FormValues>) => (
+  const ClouFilterForm = (formikBag: FormikProps<CloudFiltersFormValues>) => (
     <Form>
       <label className="text-style">
         Cloud Provider
@@ -68,7 +63,7 @@ export const ClouFilter = ({providers, regions, handleSubmit} : Props) => {
   return (
     <Formik
       initialValues={defaultValues}
-      render={renderForm}
+      render={ClouFilterForm}
       onSubmit={onSubmit}
     />
   );
