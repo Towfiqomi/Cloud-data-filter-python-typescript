@@ -1,8 +1,5 @@
-import { useEffect, useState } from "react";
 import "../components/CloudList.css";
-import useCloudList from "../hooks/useCloudListHook";
-import ReactPaginate from "react-paginate";
-import { CloudData, PageInfo } from "../types";
+import { CloudData } from "../types";
 
 interface Props {
   cloudList: CloudData;
