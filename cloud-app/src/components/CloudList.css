@@ -144,7 +144,7 @@
 .custom-select {
     margin-bottom: 1rem;
     max-width: 20rem;
-    
+    display: contents!important;
 }
 
 .text-style{

@@ -20,7 +20,7 @@ export const CloudList : any = () => {
   
     return (
         <div className="div-center">
-            <div className="mr-0">
+            <div className="">
             <table className="styled-table">
               <thead>
                 <tr>
