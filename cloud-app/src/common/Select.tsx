@@ -15,22 +15,20 @@ export const CustomSelect = ({
   field,
   form,
   options,
-  isMulti = false
+  isMulti = false,
 }: CustomSelectProps) => {
   const onChange = (option: Option | Option[]) => {
     form.setFieldValue(
       field.name,
-      isMulti
-        ? (option as Option[]).map((item: Option) => item.value)
-        : (option as Option).value
+      isMulti ? (option as Option[]).map((item: Option) => item.value) : (option as Option).value
     );
   };
 
   const getValue = () => {
     if (options) {
       return isMulti
-        ? options.filter((option: { value: any; }) => field.value.indexOf(option.value) >= 0)
-        : options.find((option: { value: any; }) => option.value === field.value);
+        ? options.filter((option: { value: any }) => field.value.indexOf(option.value) >= 0)
+        : options.find((option: { value: any }) => option.value === field.value);
     } else {
       return isMulti ? [] : ("" as any);
     }
