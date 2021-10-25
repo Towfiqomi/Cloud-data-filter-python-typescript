@@ -16,7 +16,7 @@ const defaultValues: CloudFiltersFormValues = {
 interface Props{
   providers: Option[],
   regions:Option[],
-  handleSubmit : Function,
+  handleSubmit : (current_page: number, data: CloudFiltersFormValues) => void,
 }
 
 export const ClouFilter = ({providers, regions, handleSubmit} : Props) => {

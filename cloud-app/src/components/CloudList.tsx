@@ -26,8 +26,8 @@ export const CloudListTable : any = ({cloudList} : Props) => {
               </thead>
               {
                 cloudList && cloudList.clouds.map((cloud, index)=>
-                <tbody>
-                  <tr key={index}>
+                <tbody key={index}>
+                  <tr>
                     <td>{cloud.cloud_name}</td>
                     <td>{cloud.cloud_description}</td>
                     <td>{cloud.geo_region}</td>
