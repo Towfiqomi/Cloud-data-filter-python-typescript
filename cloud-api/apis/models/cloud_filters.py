@@ -59,10 +59,33 @@ async def distance_filter(cloud_list: cloud_list_dto.CloudList):
                                              user_location_data["latitude"], user_location_data["latitude"])
         cloud_list[i]["distance"] = distance
     newlist = sorted(cloud_list, key=lambda d: d['distance']) 
-    print(newlist)
     return newlist
 
-
+async def filter_switcher(filters: cloud_filters_dto.CloudFilters,
+                          cloud_list : cloud_list_dto.CloudList):
+    filterd_cloud_list=[]
+    
+    if filters.provider:
+        filterd_cloud_list = provider_filter(cloud_list["clouds"], filters.provider)
+    if filters.region:
+        filterd_cloud_list = region_filter(cloud_list["clouds"], filters.region)
+    if filters.distance == True:
+        filterd_cloud_list = await distance_filter(cloud_list["clouds"])
+    if filters.provider and filters.region:
+        filterd_cloud_list = provider_filter(cloud_list["clouds"], filters.provider)
+        filterd_cloud_list = region_filter(filterd_cloud_list, filters.region)
+    if filters.region and filters.distance == True:
+        filterd_cloud_list = region_filter(cloud_list["clouds"], filters.region)
+        filterd_cloud_list = await distance_filter(filterd_cloud_list)
+    if filters.provider and filters.distance == True:
+        filterd_cloud_list = provider_filter(cloud_list["clouds"], filters.provider)
+        filterd_cloud_list = await distance_filter(filterd_cloud_list)
+    if filters.provider and filters.distance == True and filters.region:
+        filterd_cloud_list = provider_filter(cloud_list["clouds"], filters.provider)
+        filterd_cloud_list = region_filter(filterd_cloud_list, filters.region)
+        filterd_cloud_list = await distance_filter(filterd_cloud_list)
+        
+    return filterd_cloud_list
 
 
 async def get_filtered_cloud_list(
@@ -72,18 +95,8 @@ async def get_filtered_cloud_list(
     )-> cloud_list_dto.PaginatedCloudList:
     cloud_list = await dataprovider.get_full_cloud_list()
 
-    filterd_cloud_list=[]
-    print(filters)
-    if filters.provider:
-        filterd_cloud_list = provider_filter(cloud_list["clouds"], filters.provider)
-    elif filters.region:
-        filterd_cloud_list = region_filter(cloud_list["clouds"], filters.region)
-    elif filters.provider and filters.region:
-         filterd_cloud_list = provider_filter(cloud_list["clouds"], filters.provider)
-         filterd_cloud_list = region_filter(filterd_cloud_list, filters.region)
-    elif filters.distance == True:
-        filterd_cloud_list = await distance_filter(cloud_list["clouds"])
-            
+    filterd_cloud_list = await filter_switcher(filters, cloud_list)
+    
     index_of_last_cloud = current_page * page_size
     index_of_first_cloud = index_of_last_cloud - page_size
     final_filterd_cloud_list = filterd_cloud_list[index_of_first_cloud:index_of_last_cloud]
