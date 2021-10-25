@@ -6,11 +6,11 @@ from fastapi.responses import PlainTextResponse
 
 from apis import config, routes
 
+
 def get_origins():
-    origins = [
-        config.APP_DOMAIN
-    ]
+    origins = [config.APP_DOMAIN]
     return origins
+
 
 def application_details() -> FastAPI:
     application = FastAPI(
@@ -28,7 +28,9 @@ def application_details() -> FastAPI:
     )
     return application
 
+
 app = application_details()
+
 
 @app.exception_handler(StarletteHTTPException)
 async def http_exception_handler(request, exc):

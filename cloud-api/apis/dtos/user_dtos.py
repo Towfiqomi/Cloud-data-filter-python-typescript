@@ -1,7 +1,8 @@
 from pydantic.main import BaseModel
 
+
 class UserLocationData(BaseModel):
-    ip :str
+    ip: str
     country_code: str
     country_name: str
     region_code: str
@@ -9,6 +10,6 @@ class UserLocationData(BaseModel):
     city: str
     zip_code: str
     time_zone: str
-    latitude : float
+    latitude: float
     longitude: float
     metro_code: int
