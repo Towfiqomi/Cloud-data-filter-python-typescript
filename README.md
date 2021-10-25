@@ -2,6 +2,8 @@
 
 The project fetches cloud list from Aiven public API and a list of cloud is shown as in table in app. User can also filter the cloud list using cloud providers, regions and the distance.
 
+![Cloud-App](https://user-images.githubusercontent.com/24907984/138779150-c88b896f-f61e-42a1-863c-0c70c1d5d605.png)
+
 ### Used Tech Stack
 
 - Python
