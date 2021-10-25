@@ -13,6 +13,7 @@ class PageInfo(BaseModel):
     total : int
     hasNextPage : bool
     total_pages: int
+    filtered_data : Optional[bool]
 class PaginatedCloudList(BaseModel):
     clouds : List[CloudDetails]
     pageInfo : PageInfo

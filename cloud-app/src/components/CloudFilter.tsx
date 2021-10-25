@@ -21,8 +21,7 @@ const defaultValues: FormValues = {
 interface Props{
   providers: Option[],
   regions:Option[],
-  handleSubmit : any
-
+  handleSubmit : Function,
 }
 
 export const ClouFilter = ({providers, regions, handleSubmit} : Props) => {

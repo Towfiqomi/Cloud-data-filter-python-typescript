@@ -6,7 +6,8 @@ const useCloudList = (): {
   cloudList: CloudData;
   pageInfo : PageInfo;
   fetchCloudList:(current_page : number)=> Promise<void>;
-  filterCloudList: (current_page : number, filter_entity : CloudFiltersDataEntity) => Promise<void>
+  filterCloudList: (current_page : number, filter_entity : CloudFiltersDataEntity) => Promise<void>;
+  filterEntity: CloudFiltersDataEntity | undefined;
 } => {
   const [cloudList, setCloudList] = useState<CloudData>({
       clouds : []
@@ -16,6 +17,8 @@ const useCloudList = (): {
     hasNextPage : false,
     total_pages : 0
   })
+
+  const [filterEntity, setFilterEntity] = useState<CloudFiltersDataEntity>()
 
   const fetchCloudList = async (current_page : number): Promise<void> => {
     try {
@@ -31,6 +34,7 @@ const useCloudList = (): {
   };
 
   const filterCloudList = async (current_page : number, filter_entity : CloudFiltersDataEntity): Promise<void> => {
+    setFilterEntity(filter_entity)
     try {
         const {data} = await axios.post<CloudData>(
           `http://localhost:5000/v1/cloud/filters?current_page=${current_page}&page_size=10`,
@@ -50,7 +54,8 @@ const useCloudList = (): {
     cloudList,
     pageInfo,
     fetchCloudList,
-    filterCloudList
+    filterCloudList,
+    filterEntity
   };
 };
 

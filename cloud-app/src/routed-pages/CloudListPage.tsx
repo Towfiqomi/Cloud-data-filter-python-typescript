@@ -6,9 +6,10 @@ import "./routedPage.css"
 import useCloudList from "../hooks/useCloudListHook";
 import ReactPaginate from "react-paginate";
 import useCloudFilters from "../hooks/useCloudFilters";
+import { values } from "lodash";
 
 export const CloudListPage = () => {
-  const {cloudList, pageInfo, fetchCloudList, filterCloudList} = useCloudList();
+  const {cloudList, pageInfo, filterEntity, fetchCloudList, filterCloudList} = useCloudList();
   const [currentPage, setCurrentPage] = useState(1)
   const {providers, regions, fetchCloudFilters} = useCloudFilters();
 
@@ -21,7 +22,10 @@ export const CloudListPage = () => {
 
   useEffect(() => {
       const fetch = async () =>{
-          await fetchCloudList(currentPage);
+          if(filterEntity != undefined){
+            filterEntity && await filterCloudList(currentPage, filterEntity)
+          }
+          else await fetchCloudList(currentPage);
       };
       fetch()
   }, [currentPage])
@@ -30,7 +34,6 @@ export const CloudListPage = () => {
       setCurrentPage(selectedItem.selected + 1)
   }
 
-  
 
   return (
     <div className="row no-gutters">

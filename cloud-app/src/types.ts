@@ -14,7 +14,8 @@ export type CloudData = Readonly<{
 export type PageInfo = Readonly<{
     total: number,
     hasNextPage : boolean,
-    total_pages : number
+    total_pages : number,
+    filtered_data?: boolean
 }>
 
 export type CloudFilters = Readonly<{
