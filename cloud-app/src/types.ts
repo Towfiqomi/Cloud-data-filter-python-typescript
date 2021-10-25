@@ -4,6 +4,7 @@ export type CloudSummery = Readonly<{
     geo_latitude: number,
     geo_longitude: number,
     geo_region: string
+    distance?: number
 }>
 
 export type CloudData = Readonly<{

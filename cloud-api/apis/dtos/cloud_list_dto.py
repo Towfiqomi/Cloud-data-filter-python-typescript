@@ -1,5 +1,5 @@
 from pydantic.main import BaseModel
-from typing import List, NewType, Optional
+from typing import List, Optional
 
 
 class CloudDetails(BaseModel):
@@ -8,6 +8,7 @@ class CloudDetails(BaseModel):
     geo_latitude : float
     geo_longitude : float
     geo_region : str
+    distance: Optional[int]
 
 class PageInfo(BaseModel):
     total : int

@@ -8,13 +8,13 @@ import {Option} from "../common/Select"
 
 export interface FormValues {
   region: string;
-  provider: string[],
+  provider: string,
   distance: boolean
 }
 
 const defaultValues: FormValues = {
   region: "",
-  provider: [],
+  provider: "",
   distance : false
 };
 
@@ -28,7 +28,6 @@ export const ClouFilter = ({providers, regions, handleSubmit} : Props) => {
 
   const onSubmit = (values: FormValues) => {
     handleSubmit(1,values)
-    alert(JSON.stringify(values, null, 2));
   };
 
   const renderForm = (formikBag: FormikProps<FormValues>) => (
