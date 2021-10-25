@@ -2,22 +2,15 @@ import { useEffect, useState } from 'react';
 import "../components/CloudList.css"
 import useCloudList from "../hooks/useCloudListHook"
 import ReactPaginate from "react-paginate"
- 
-export const CloudList : any = () => {
-    const {cloudList, pageInfo, fetchCloudList} = useCloudList();
-    const [currentPage, setCurrentPage] = useState(1)
-    
-    useEffect(() => {
-        const fetch = async () =>{
-          await fetchCloudList(currentPage);
-        };
-        fetch()
-    }, [currentPage])
+import {CloudData, PageInfo} from "../types";
 
-    const handlePageClick = (selectedItem: { selected: number }) =>{
-      setCurrentPage(selectedItem.selected + 1)
-    }
-  
+
+
+interface Props{
+  cloudList : CloudData,
+}
+
+export const CloudListTable : any = ({cloudList} : Props) => {
     return (
         <div className="div-center">
             <div className="">
@@ -44,23 +37,6 @@ export const CloudList : any = () => {
                 </tbody>
                 )}
             </table>
-            <ReactPaginate
-              previousLabel = {"Previous"} 
-              pageCount={pageInfo.total_pages +1}
-              nextLabel={"Next"}
-              breakLabel={"..."} 
-              pageRangeDisplayed={5}
-              marginPagesDisplayed={5}
-              onPageChange={handlePageClick}
-              containerClassName={"pagination div-center"}
-              activeClassName={"active"}
-              nextLinkClassName={"pagination-next-content sui-text-b5"}
-              nextClassName={"pagination-arrow-next"}
-              previousClassName={"pagination-arrow-previous"}
-              previousLinkClassName={"pagination-previous-content sui-text-b5"}
-              disabledClassName={"pagination-previous-next-disabled"}
-              >
-            </ReactPaginate>
           </div>
       </div>
     );

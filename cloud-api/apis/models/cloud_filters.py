@@ -16,6 +16,11 @@ async def get_cloud_filters() -> cloud_filters_dto.CloudFilterBy:
         "providers": cloud_filters_dto.CloudProvider.list()
     }
 
-async def get_filtered_cloud_list()-> cloud_list_dto.PaginatedCloudList:
+async def get_filtered_cloud_list(
+        filters: cloud_filters_dto.CloudFilters,
+        current_page: int,
+        page_size:int
+    )-> cloud_list_dto.PaginatedCloudList:
     cloud_list = await dataprovider.get_full_cloud_list()
+    print(filters)
     return cloud_list

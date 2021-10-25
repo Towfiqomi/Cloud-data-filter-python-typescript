@@ -6,7 +6,7 @@ export type CloudSummery = Readonly<{
     geo_region: string
 }>
 
-export type CloudList = Readonly<{
+export type CloudData = Readonly<{
     clouds : ReadonlyArray<CloudSummery>
     pageInfo?: PageInfo
 }>
@@ -20,4 +20,11 @@ export type PageInfo = Readonly<{
 export type CloudFilters = Readonly<{
     regions : ReadonlyArray<string>
     providers: ReadonlyArray<string>
+}>
+
+export type CloudFiltersDataEntity = Readonly<{
+    region? : string,
+    provider?: string,
+    distance?: boolean
+
 }>

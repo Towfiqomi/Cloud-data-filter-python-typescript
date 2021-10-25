@@ -4,6 +4,7 @@ import "./CloudList.css"
 import useCloudFilters from "../hooks/useCloudFilters"
 import { useEffect } from "react";
 import {Checkbox} from "../common/Checkbox";
+import {Option} from "../common/Select"
 
 export interface FormValues {
   region: string;
@@ -17,18 +18,17 @@ const defaultValues: FormValues = {
   distance : false
 };
 
-export const ClouFilter = () => {
+interface Props{
+  providers: Option[],
+  regions:Option[],
+  handleSubmit : any
 
-  const {providers, regions, fetchCloudFilters} = useCloudFilters();
+}
 
-  useEffect(() => {
-    const fetch = async () =>{
-      await fetchCloudFilters();
-    };
-    fetch()
-  }, [])
+export const ClouFilter = ({providers, regions, handleSubmit} : Props) => {
 
   const onSubmit = (values: FormValues) => {
+    handleSubmit(1,values)
     alert(JSON.stringify(values, null, 2));
   };
 
