@@ -35,7 +35,6 @@ export const CloudListPage = () => {
       setCurrentPage(selectedItem.selected + 1);
   }
 
-
   return (
     <div className="row no-gutters">
       <div className="col-4 form-border">
@@ -51,7 +50,7 @@ export const CloudListPage = () => {
           cloudList = {cloudList}
         />
         <ReactPaginate
-              previousLabel = {"Previous"} 
+              previousLabel = {"Previous"}
               pageCount={pageInfo.total_pages +1}
               nextLabel={"Next"}
               breakLabel={"..."} 
@@ -67,7 +66,7 @@ export const CloudListPage = () => {
               disabledClassName={"pagination-previous-next-disabled"}
               >
         </ReactPaginate>
-      </div>
+        </div>
       </div>
   );
 };

@@ -1,7 +1,8 @@
 import { useState } from "react";
 import { CloudFilters, Option } from "../types";
 import axios from "axios";
-import {toUpperCase} from "../utils/Utils"
+import {toUpperCase} from "../utils/Utils";
+import {API_BASE_URL} from "../config"
 
 const useCloudFilters = (): {
   regions: Option[];
@@ -13,7 +14,7 @@ const useCloudFilters = (): {
 
   const fetchCloudFilters = async (): Promise<void> => {
     try {
-        const {data} = await axios.get<CloudFilters>(`http://localhost:5000/v1/cloud/filters`);
+        const {data} = await axios.get<CloudFilters>(`${API_BASE_URL}/cloud/filters`);
         if (data.providers) {
             const providerList = data.providers.map(function (provider: any) {
                 return {

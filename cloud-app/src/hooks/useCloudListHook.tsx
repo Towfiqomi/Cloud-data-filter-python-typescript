@@ -1,6 +1,7 @@
 import { useState } from "react";
 import {CloudData, PageInfo, CloudFiltersDataEntity } from "../types";
 import axios from "axios";
+import {API_BASE_URL} from "../config"
 
 const useCloudList = (): {
   cloudList: CloudData;
@@ -20,9 +21,10 @@ const useCloudList = (): {
 
   const [filterEntity, setFilterEntity] = useState<CloudFiltersDataEntity>();
 
+
   const fetchCloudList = async (current_page : number): Promise<void> => {
     try {
-        const {data} = await axios.get<CloudData>(`http://localhost:5000/v1/cloud/list?current_page=${current_page}&page_size=10`);
+        const {data} = await axios.get<CloudData>(`${API_BASE_URL}/cloud/list?current_page=${current_page}&page_size=10`);
         if (data) {
             setCloudList(data);
         }
@@ -37,7 +39,7 @@ const useCloudList = (): {
     setFilterEntity(filter_entity)
     try {
         const {data} = await axios.post<CloudData>(
-          `http://localhost:5000/v1/cloud/filters?current_page=${current_page}&page_size=10`,
+          `${API_BASE_URL}/cloud/filters?current_page=${current_page}&page_size=10`,
           filter_entity
         );
         if (data) {
@@ -55,7 +57,7 @@ const useCloudList = (): {
     pageInfo,
     fetchCloudList,
     filterCloudList,
-    filterEntity
+    filterEntity,
   };
 };
 
