@@ -38,7 +38,6 @@ export const ClouFilter = () => {
         Cloud Provider
       </label>
         <Field
-          className="custom-select"
           name="provider"
           options={providers}
           component={CustomSelect}
@@ -49,7 +48,6 @@ export const ClouFilter = () => {
         Cloud Region
       </label>
       <Field
-        className="custom-select"
         name="region"
         options={regions}
         component={CustomSelect}
