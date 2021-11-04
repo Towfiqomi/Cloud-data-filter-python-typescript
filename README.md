@@ -1,4 +1,4 @@
-# fullstack-20211014-Towfiqomi
+# Cloud-data-filter-python-typescript
 
 The project fetches cloud list from Aiven public API and a list of cloud is shown as in table in app. User can also filter the cloud list using cloud providers, regions and the distance.
 
@@ -61,16 +61,5 @@ yarn start
 
 ### External Service
 To collect the user's location data the project used am external service called [Freegeoip](https://freegeoip.app/). This data is collected to compare the user location with the cloud's location to get the distance of the cloud from the each user.
-
-### Attributes
-
-- https://dev.to/dcodeyt/creating-beautiful-html-tables-with-css-428l
-- https://www.youtube.com/watch?v=FD50LPJ6bjE
-- https://www.antstack.io/blog/reusable-form-components-using-react-formik-yup/
-- https://gist.github.com/hubgit/e394e9be07d95cd5e774989178139ae8#gistcomment-2887706
-- https://dev.to/tylerlwsmith/how-to-implement-a-working-checkbox-component-in-formik-1-5-8-5dmj
-- https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/checkbox
-- https://stackoverflow.com/questions/4148499/how-to-style-a-checkbox-using-css
-- https://yogeshnogia.medium.com/program-to-sort-the-given-array-of-objects-having-lat-lng-by-distance-from-your-given-location-9052eb45f86d
 
 
